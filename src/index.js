@@ -14,5 +14,5 @@ app.get('/', (req, res) => {
     res.render('home', { layout: false });
 });
 
-app.listen(5000, () => console.log('Server is working (daaa) on http://localhost:5000...'));
+app.listen(5000, () => console.log('Server is working on http://localhost:5000...'));
 
