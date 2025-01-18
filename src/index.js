@@ -11,7 +11,7 @@ app.set('views', './src/views');
 
 
 app.get('/', (req, res) => {
-    res.send('Started here!')
+    res.render('home', { layout: false });
 });
 
 app.listen(5000, () => console.log('Server is working (daaa) on http://localhost:5000...'));
