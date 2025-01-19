@@ -1,14 +1,14 @@
 {
   "name": "movie-magic",
   "version": "1.0.0",
-  "description": "",
+  "description": "movie_magic",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "LTS",
   "license": "ISC",
   "type": "module",
   "dependencies": {
@@ -17,5 +17,13 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madvin/movie-magic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/madvin/movie-magic/issues"
+  },
+  "homepage": "https://github.com/madvin/movie-magic#readme"
 }
