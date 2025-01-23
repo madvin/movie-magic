@@ -10,6 +10,7 @@ try {
     const uri = 'mongodb://localhost:27017/magic-movies-DB'
     await mongoose.connect
 } catch (err) {
+    console.log('Something went wrong with DB connection');
     console.log(err.message);
 }
 
