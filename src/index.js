@@ -1,14 +1,16 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
 import routes from './routes.js';
-
+import showRatingHelper from './helpers/ratingHelper.js';
 import mongoose from 'mongoose';
 
 const app = express();
 
 try {
-    const uri = 'mongodb://localhost:27017/magic-movies-DB'
-    await mongoose.connect
+    const defaultUri = 'mongodb://localhost:27017/magic-movies-DB';
+    await mongoose.connect(defaultUri);
+
+    console.log('DB Connected Successfuly!');
 } catch (err) {
     console.log('Something went wrong with DB connection');
     console.log(err.message);
@@ -16,11 +18,18 @@ try {
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+    },
+    helpers: {
+        showRating: showRatingHelper,
+    }
 }));
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
 
 app.use('/static', express.static('src/public'));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(routes);
 
