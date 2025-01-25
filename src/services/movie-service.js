@@ -1,7 +1,40 @@
-import { v4 as uuid } from 'uuid';
-
 import Movie from '../models/Movie.js';
 
 export default {
-    async getAll(filter)
+    getAll(filter = {}) {
+        let query = Movie.find({});
+
+        if (filter.search) {
+            query = query.where({ title: filter.search });
+        }
+
+        if (filter.genre) {
+            query = query.where({ title: filter.genre });
+        }
+
+        if (filter.year) {
+            query = query.where({ title: filter.year });
+        }
+
+        return query;
+
+    },
+    getOne(movieId) {
+        const result = Movie.findById(movieId);
+        return result;
+    },
+    getOneWithCasts(movieId) {
+        return this.getOne(movieId).populate('casts');
+    },
+    create(movieId) {
+        const result  = Movie.create({
+            ...movieData,
+            rating: Number(movieData.rating),
+            year: Number(movieData.year),
+        });
+        return result;
+    },
+    async attachCast(movieId, castId) {
+        return Movie.findByIdAndUpdate(movieId, { $push: { casts: castId } });
+    }
 }
