@@ -1,10 +1,10 @@
 {
   "name": "movie-magic",
   "version": "1.0.0",
-  "description": "",
+  "description": "homeWork",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.js"
+    "dev": "nodemon /src/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/madvin/movie-magic#readme",
   "devDependencies": {
-    "mongoose": "^8.9.5",
     "nodemon": "^3.1.9"
   },
   "dependencies": {
     "express": "^4.21.2",
-    "express-handlebars": "^8.0.1"
+    "express-handlebars": "^8.0.1",
+    "mongoose": "^8.9.5"
   }
 }
