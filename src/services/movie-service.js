@@ -9,11 +9,11 @@ export default {
         }
 
         if (filter.genre) {
-            query = query.where({ title: filter.genre });
+            query = query.where({ genre: filter.genre });
         }
 
         if (filter.year) {
-            query = query.where({ title: filter.year });
+            query = query.where({ year: Number(filter.year) });
         }
 
         return query;
