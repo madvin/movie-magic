@@ -4,11 +4,14 @@ import routes from './routes.js';
 import showRatingHelper from './helpers/ratingHelper.js';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import { authMiddleware } from './middlewares/auth-middleware.js';
+import 'dotenv/config';
 
 const app = express();
 
 try {
-    const defaultUri = 'mongodb://localhost:27017/magic-movies-DB';
+    const defaultUri = process.env.DATABASE_URI;
+
     await mongoose.connect(defaultUri);
 
     console.log('DB Connected Successfuly!');
@@ -32,6 +35,7 @@ app.set('views', './src/views');
 app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(authMiddleware);
 
 app.use(routes);
 
