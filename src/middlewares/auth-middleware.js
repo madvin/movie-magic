@@ -3,10 +3,9 @@ import jwt from 'jsonwebtoken';
 const SECRET = process.env.JWT_SECRET || 'BASICSECRET';
 
 export const authMiddleware = (req, res, next) => {
+    const token = req.cookies['auth'];
 
-    const token =  req.cookies['auth'];
-
-    if (token) {
+    if (!token) {
         return next();
     }
 
@@ -15,9 +14,9 @@ export const authMiddleware = (req, res, next) => {
 
         req.user = decodedToken;
         res.locals.user = decodedToken;
-
+        
         next();
-    } catch {
+    } catch(err) {
         res.clearCookie('auth');
         res.redirect('/auth/login');
     }
@@ -26,6 +25,7 @@ export const authMiddleware = (req, res, next) => {
 export const isAuth = (req, res, next) => {
     if (!req.user) {
         return res.redirect('/auth/login');
-    }
+    } 
+
     next();
 }

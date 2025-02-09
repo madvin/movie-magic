@@ -31,10 +31,17 @@ export default {
             ...movieData,
             rating: Number(movieData.rating),
             year: Number(movieData.year),
+            creator: creatorId
         });
         return result;
     },
     async attachCast(movieId, castId) {
         return Movie.findByIdAndUpdate(movieId, { $push: { casts: castId } });
+    },
+    delete(movieId) {
+        return Movie.findByIdAndDelete(movieId);
+    },
+    update(movieId, movieData) {
+        return Movie.findByIdAndUpdate(movieId, movieData);
     }
 }

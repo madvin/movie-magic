@@ -10,14 +10,13 @@ import 'dotenv/config';
 const app = express();
 
 try {
-    const defaultUri = process.env.DATABASE_URI;
-
-    await mongoose.connect(defaultUri);
+    const defaultUri = 'mongodb://localhost:27017/magic-movies-DB';
+    await mongoose.connect(process.env.DATABASE_URI ?? defaultUri);
 
     console.log('DB Connected Successfuly!');
 } catch (err) {
-    console.log('Something went wrong with DB connection');
-    console.log(err.message);
+    console.log('Cannot connect to DB');
+    console.error(err.message);
 }
 
 app.engine('hbs', handlebars.engine({
