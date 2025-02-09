@@ -11,14 +11,21 @@ export const authMiddleware = (req, res, next) => {
     }
 
     try {
-        const decodeToken = jwt.verify(token, SECRET);
+        const decodedToken = jwt.verify(token, SECRET);
 
-        req.user = decodeToken;
+        req.user = decodedToken;
+        res.locals.user = decodedToken;
 
         next();
     } catch {
-        //TODO: Invalid token
         res.clearCookie('auth');
         res.redirect('/auth/login');
     }
 };
+
+export const isAuth = (req, res, next) => {
+    if (!req.user) {
+        return res.redirect('/auth/login');
+    }
+    next();
+}
